@@ -1,0 +1,6 @@
+{
+  "appTitle": "send_whatsapp",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
