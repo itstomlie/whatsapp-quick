@@ -24,9 +24,7 @@ Future<void> safeLaunchUrl(Uri uri) async {
 }
 
 class SimpleForm extends StatefulWidget {
-  final Future<void> Function() onMessageSent;
-
-  const SimpleForm({super.key, required this.onMessageSent});
+  const SimpleForm({super.key});
 
   @override
   State<SimpleForm> createState() => _SimpleFormState();
@@ -75,7 +73,9 @@ class _SimpleFormState extends State<SimpleForm> {
                             ]),
                       ),
                       contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
+                        horizontal: 20,
+                        vertical: 5,
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(5.0)),
@@ -97,7 +97,8 @@ class _SimpleFormState extends State<SimpleForm> {
                   ),
                   const SizedBox(height: 24),
                   TextFormField(
-                    maxLines: 4,
+                    maxLines: 15,
+                    minLines: 5,
                     keyboardType: TextInputType.multiline,
                     controller: _messageController,
                     cursorColor: themeColor.primary,
@@ -139,17 +140,19 @@ class _SimpleFormState extends State<SimpleForm> {
                       backgroundColor: themeColor.secondary,
                     ),
                     onPressed: () async {
-                      var uri = Uri.parse(
-                          'https://wa.me/${_numberController.text}?text=${Uri.encodeComponent(_messageController.text)}');
+                      if (_formKey.currentState!.validate()) {
+                        var uri = Uri.parse(
+                            'https://wa.me/${_numberController.text}?text=${Uri.encodeComponent(_messageController.text)}');
 
-                      safeLaunchUrl(uri);
+                        safeLaunchUrl(uri);
 
-                      final newMessage = Message.create(_numberController.text,
-                          _messageController.text, DateTime.now());
+                        final newMessage = Message.create(
+                            _numberController.text,
+                            _messageController.text,
+                            DateTime.now());
 
-                      await messageDB.insertMessage(newMessage);
-
-                      await widget.onMessageSent();
+                        await messageDB.insertMessage(newMessage);
+                      }
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +160,7 @@ class _SimpleFormState extends State<SimpleForm> {
                         FaIcon(
                           FontAwesomeIcons.paperPlane,
                           color: themeColor.onSurface,
-                          size: 15.0, // You can adjust the size as needed
+                          size: 15.0,
                         ),
                         const SizedBox(
                           width: 5,
