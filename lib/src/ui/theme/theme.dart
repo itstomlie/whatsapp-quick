@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
@@ -13,6 +14,20 @@ ThemeData lightMode = ThemeData(
   ),
 );
 
+ThemeData v2 = ThemeData(
+  brightness: Brightness.light,
+  colorScheme: const ColorScheme.light(
+      primary: Color(0xFF263238), // A deeper, richer green
+      onPrimary: Color(0xFFFFFFFF), // White for better contrast on primary
+      error: Color(0xFFD32F2F), // A more vibrant red
+      background: Color(0xFFE8F5E9), // A softer green tint for the background
+      onBackground: Color(0xFF388E3C), // Darker green for text on background
+      surface: Color(0xFFFFFFFF), // Pure white for surfaces
+      onSurface: Color(0xFF212121),
+      secondary: Color(0xFF00C853) // Dark grey for text on surfaces
+      ),
+);
+
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   colorScheme: const ColorScheme.dark(
@@ -24,6 +39,7 @@ ThemeData darkMode = ThemeData(
     surface: Color(0xFF37474F), // Dark grey-blue for surfaces
     onSurface: Color(0xFFECEFF1), // Off-white for text on surfaces
   ),
+  // fontFamily: GoogleFonts.montserrat().fontFamily,
 );
 
 ThemeData otherTheme = ThemeData(

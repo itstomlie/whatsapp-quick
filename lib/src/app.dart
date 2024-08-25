@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
             // preferred ThemeMode (light, dark, or system default) from the
             // SettingsController to display the correct theme.
             themeMode: settingsController.themeMode,
-            theme: otherTheme,
+            theme: v2,
             darkTheme: monochromeTheme,
 
             // Define a function to handle named routes in order to support

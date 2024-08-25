@@ -53,7 +53,7 @@ class _SimpleFormState extends State<SimpleForm> {
                   TextFormField(
                     controller: _numberController,
                     keyboardType: TextInputType.phone,
-                    autofocus: true,
+                    // autofocus: true,
                     cursorColor: themeColor.primary,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
@@ -136,7 +136,7 @@ class _SimpleFormState extends State<SimpleForm> {
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(40),
                       foregroundColor: themeColor.onPrimary,
-                      backgroundColor: themeColor.primary,
+                      backgroundColor: themeColor.secondary,
                     ),
                     onPressed: () async {
                       var uri = Uri.parse(
