@@ -61,11 +61,11 @@ class _SimpleFormState extends State<SimpleForm> {
                         color: themeColor.primary,
                       ),
                       hintText: '+6285273495013',
-                      hintStyle: TextStyle(color: themeColor.onPrimary),
+                      hintStyle: TextStyle(color: themeColor.primary),
                       label: RichText(
                         text: TextSpan(
                             text: 'Whatsapp Number',
-                            style: TextStyle(color: themeColor.onPrimary),
+                            style: TextStyle(color: themeColor.primary),
                             children: [
                               TextSpan(
                                   text: ' *',
@@ -110,7 +110,7 @@ class _SimpleFormState extends State<SimpleForm> {
                       label: Text(
                         'Message (Optional)',
                         style: TextStyle(
-                          color: themeColor.onPrimary,
+                          color: themeColor.primary,
                           fontSize: 14,
                         ),
                       ),
@@ -135,7 +135,7 @@ class _SimpleFormState extends State<SimpleForm> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(40),
-                      foregroundColor: themeColor.onPrimary,
+                      foregroundColor: themeColor.primary,
                       backgroundColor: themeColor.secondary,
                     ),
                     onPressed: () async {

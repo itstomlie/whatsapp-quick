@@ -48,7 +48,7 @@ class _HomeState extends ConsumerState<Home> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(color: Color(0xFFECEFF1)),
+            decoration: BoxDecoration(color: themeColor.background),
           ),
           SafeArea(
             child: SingleChildScrollView(
@@ -80,7 +80,7 @@ class _HomeState extends ConsumerState<Home> {
                       width: double.infinity,
                       alignment: Alignment.topCenter,
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 223, 223, 223),
+                        color: themeColor.onBackground,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Padding(
@@ -101,7 +101,7 @@ class _HomeState extends ConsumerState<Home> {
                             ),
                             const SizedBox(height: 6),
                             Text(
-                              'Send whatsapp message without adding to contact book',
+                              'Send whatsapp message without adding to contacts',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: themeColor.primary,
@@ -125,6 +125,7 @@ class _HomeState extends ConsumerState<Home> {
         height: 1000, // Adjust as needed
         width: double.infinity,
         alignment: Alignment.topCenter,
+        decoration: BoxDecoration(color: themeColor.background),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 10,
