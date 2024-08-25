@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:send_whatsapp/app/data/database/message_db.dart';
 import 'package:send_whatsapp/app/data/models/message.dart';
 import 'package:intl/intl.dart';
+import 'package:send_whatsapp/src/ui/screens/history/historyDetail.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -33,7 +34,7 @@ class _HistoryState extends State<History> {
     final themeColor = Theme.of(context).colorScheme;
 
     return Container(
-      height: 1000,
+      height: double.infinity,
       width: double.infinity,
       alignment: Alignment.topCenter,
       decoration: BoxDecoration(color: themeColor.background),
@@ -42,7 +43,7 @@ class _HistoryState extends State<History> {
             CrossAxisAlignment.center, // Ensure content is aligned to the start
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+            padding: const EdgeInsets.fromLTRB(12, 24, 12, 0),
             child: Column(
               children: [
                 Text(
@@ -50,7 +51,7 @@ class _HistoryState extends State<History> {
                   style: TextStyle(
                     color: themeColor.primary,
                     fontWeight: FontWeight.bold,
-                    fontSize: 22,
+                    fontSize: 28,
                   ),
                 ),
                 const Divider(
@@ -83,66 +84,65 @@ class _HistoryState extends State<History> {
                     itemBuilder: (context, index) {
                       final message = messages[index];
 
-                      String date =
-                          DateFormat('dd').format(message.createdAt.toLocal());
-                      String month =
-                          DateFormat('MMM').format(message.createdAt.toLocal());
-                      String year =
-                          DateFormat('yy').format(message.createdAt.toLocal());
-
+                      String date = DateFormat('dd MMM yy')
+                          .format(message.createdAt.toLocal());
                       String time = DateFormat('HH:mm:ss')
                           .format(message.createdAt.toLocal());
 
                       return ListTile(
-                        leading: SizedBox(
-                          width: 60,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(date),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(month),
-                                  const SizedBox(width: 5),
-                                  Text(year),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        title: Text(
-                          message.number,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        onTap: () {
+                          if (message.body?.isNotEmpty == true) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HistoryDetail(message: message),
+                              ),
+                            );
+                          }
+                        },
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              time,
+                              message.number,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '$date, $time',
                               style: TextStyle(
                                 fontSize: 10,
                                 color: Colors.grey[600],
                               ),
                             ),
-                            SizedBox(
-                              height: 30,
-                              child: Text(
-                                message.body ?? '',
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
                           ],
                         ),
-                        isThreeLine: true,
+                        subtitle: SizedBox(
+                          height: 30,
+                          child: Text(
+                            message.body?.isNotEmpty == true
+                                ? message.body!
+                                : '[No Message]',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                        trailing: message.body?.isNotEmpty == true
+                            ? const SizedBox(
+                                width: 35,
+                                child: Center(
+                                  child: Icon(Icons.info),
+                                ),
+                              )
+                            : const SizedBox(width: 60),
+                        isThreeLine: message.body?.isNotEmpty == true,
                       );
                     },
                   );

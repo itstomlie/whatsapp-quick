@@ -43,87 +43,116 @@ class _SimpleFormState extends State<SimpleForm> {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
-                  TextFormField(
-                    controller: _numberController,
-                    keyboardType: TextInputType.phone,
-                    // autofocus: true,
-                    cursorColor: themeColor.primary,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.phone,
-                        color: themeColor.primary,
-                      ),
-                      hintText: '+6285273495013',
-                      hintStyle: TextStyle(color: themeColor.primary),
-                      label: RichText(
-                        text: TextSpan(
-                            text: 'Whatsapp Number',
-                            style: TextStyle(color: themeColor.primary),
-                            children: [
-                              TextSpan(
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: _numberController,
+                    builder: (context, value, child) {
+                      return TextFormField(
+                        controller: _numberController,
+                        keyboardType: TextInputType.phone,
+                        cursorColor: themeColor.primary,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.phone,
+                            color: themeColor.primary,
+                          ),
+                          suffixIcon: value.text.isNotEmpty
+                              ? IconButton(
+                                  onPressed: () {
+                                    _numberController.clear();
+                                  },
+                                  icon: const Icon(Icons.clear),
+                                )
+                              : null,
+                          hintText: '+6285273495013',
+                          hintStyle: TextStyle(color: themeColor.primary),
+                          label: RichText(
+                            text: TextSpan(
+                              text: 'Whatsapp Number',
+                              style: TextStyle(color: themeColor.primary),
+                              children: [
+                                TextSpan(
                                   text: ' *',
                                   style: TextStyle(
                                     color: themeColor.error,
-                                  ))
-                            ]),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 5,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5.0)),
-                        borderSide:
-                            BorderSide(color: themeColor.primary, width: 0.0),
-                      ),
-                      border: const OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: themeColor.primary, width: 2.0),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Whatsapp number is required';
-                      }
-                      return null;
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 5,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5.0)),
+                            borderSide: BorderSide(
+                                color: themeColor.primary, width: 0.0),
+                          ),
+                          border: const OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: themeColor.primary, width: 2.0),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Whatsapp number is required';
+                          }
+                          return null;
+                        },
+                      );
                     },
                   ),
                   const SizedBox(height: 24),
-                  TextFormField(
-                    maxLines: 15,
-                    minLines: 5,
-                    keyboardType: TextInputType.multiline,
-                    controller: _messageController,
-                    cursorColor: themeColor.primary,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.message,
-                        color: themeColor.primary,
-                      ),
-                      hintText: 'Your Message (Optional)',
-                      label: Text(
-                        'Message (Optional)',
-                        style: TextStyle(
-                          color: themeColor.primary,
-                          fontSize: 14,
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: _messageController,
+                    builder: (context, value, child) {
+                      return TextFormField(
+                        maxLines: 15,
+                        minLines: 5,
+                        keyboardType: TextInputType.multiline,
+                        controller: _messageController,
+                        cursorColor: themeColor.primary,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.message,
+                            color: themeColor.primary,
+                          ),
+                          suffixIcon: value.text.isNotEmpty
+                              ? IconButton(
+                                  onPressed: () {
+                                    _messageController.clear();
+                                  },
+                                  icon: const Icon(Icons.clear),
+                                )
+                              : null,
+                          hintText: 'Your Message (Optional)',
+                          label: Text(
+                            'Message (Optional)',
+                            style: TextStyle(
+                              color: themeColor.primary,
+                              fontSize: 14,
+                            ),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 15,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5.0)),
+                            borderSide: BorderSide(
+                                color: themeColor.primary, width: 0.0),
+                          ),
+                          border: const OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: themeColor.primary, width: 2.0),
+                          ),
                         ),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 15),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5.0)),
-                        borderSide:
-                            BorderSide(color: themeColor.primary, width: 0.0),
-                      ),
-                      border: const OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: themeColor.primary, width: 2.0),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 24,
@@ -136,8 +165,13 @@ class _SimpleFormState extends State<SimpleForm> {
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        var number = _numberController.text.replaceAll(
+                            RegExp(
+                                "([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[Ee]([+-]?\d+))? ([0-9]+(-[0-9]+)+) "),
+                            "");
+
                         var uri = Uri.parse(
-                            'https://wa.me/${_numberController.text}?text=${Uri.encodeComponent(_messageController.text)}');
+                            'https://wa.me/$number?text=${Uri.encodeComponent(_messageController.text)}');
 
                         safeLaunchUrl(uri);
 
@@ -147,6 +181,9 @@ class _SimpleFormState extends State<SimpleForm> {
                             DateTime.now());
 
                         await messageDB.insertMessage(newMessage);
+
+                        _numberController.clear();
+                        _messageController.clear();
                       }
                     },
                     child: Row(

@@ -12,15 +12,15 @@ class Logo extends StatelessWidget {
         color: themeColor.secondary,
         borderRadius: BorderRadius.circular(10),
       ),
-      height: 60,
-      width: 60,
+      height: 70,
+      width: 70,
       child: Text(
         'Q',
         textAlign: TextAlign.center,
         style: TextStyle(
           color: themeColor.primary,
           fontWeight: FontWeight.bold,
-          fontSize: 48,
+          fontSize: 52,
         ),
       ),
     );
