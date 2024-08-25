@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:send_whatsapp/src/ui/screens/home/home.dart';
 import 'package:send_whatsapp/src/ui/screens/index/index.dart';
 import 'package:send_whatsapp/src/ui/theme/theme.dart';
 

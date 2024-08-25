@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:send_whatsapp/src/ui/screens/home/components/logo.dart';
 import 'package:send_whatsapp/src/ui/screens/home/widgets/form.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Home extends ConsumerStatefulWidget {
-  const Home({
-    super.key,
-  });
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   static const routeName = '/';
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
     final themeColor = Theme.of(context).colorScheme;
@@ -33,23 +25,7 @@ class _HomeState extends ConsumerState<Home> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 90),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: themeColor.secondary,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: 60,
-                    width: 60,
-                    child: Text(
-                      'Q',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: themeColor.primary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 48,
-                      ),
-                    ),
-                  ),
+                  const Logo(),
                   const SizedBox(height: 90),
                   Container(
                     width: double.infinity,
@@ -89,7 +65,7 @@ class _HomeState extends ConsumerState<Home> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 200),
+                  const SizedBox(height: 100),
                 ],
               ),
             ),

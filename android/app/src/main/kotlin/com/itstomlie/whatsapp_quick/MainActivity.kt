@@ -1,4 +1,4 @@
-package com.example.send_whatsapp
+package com.itstomlie.whatsapp_quick
 
 import io.flutter.embedding.android.FlutterActivity
 
