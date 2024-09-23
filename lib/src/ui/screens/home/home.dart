@@ -24,9 +24,9 @@ class Home extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 200),
                   const Logo(),
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 200),
                   Container(
                     width: double.infinity,
                     alignment: Alignment.topCenter,

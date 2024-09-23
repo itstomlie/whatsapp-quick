@@ -122,7 +122,7 @@ class _HistoryState extends State<History> {
                           ],
                         ),
                         subtitle: SizedBox(
-                          height: 30,
+                          height: 40,
                           child: Text(
                             message.body?.isNotEmpty == true
                                 ? message.body!

@@ -1,4 +1,4 @@
-package com.itstomlie.whatsapp_quick
+package com.itsTomLie.Whatsapp_Quick
 
 import io.flutter.embedding.android.FlutterActivity
 
